@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MBD — Full-spectrum digital agency. Design, software, AI, SQA, and academic research under one roof.">
+<title>MBD — We Build. We Design. We Innovate.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-logo" data-text="MBD">MBD</div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-text" id="loaderText">Initializing...</div>
+  <div class="loader-pct" id="loaderPct">0%</div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div id="scroll-progress"></div>
+
+<!-- ============ THEME EFFECT LAYERS ============ -->
+<canvas id="bg-canvas"></canvas>
+<canvas id="fx-canvas"></canvas>
+<div class="fog-layer" id="fogLayer"></div>
+
+<!-- ============ MOOD SWITCHER ============ -->
+<div class="mood-switcher" id="moodSwitcher">
+  <button class="mood-toggle" id="moodToggle" title="Change the vibe">
+    <span class="mood-toggle-icon">✨</span>
+  </button>
+  <div class="mood-panel" id="moodPanel">
+    <div class="mood-panel-title">Pick a Vibe</div>
+    <button class="mood-opt active" data-mood="dark"><span>🌑</span> Midnight</button>
+    <button class="mood-opt" data-mood="spooky"><span>🎃</span> Spooky</button>
+    <button class="mood-opt" data-mood="magic"><span>🪄</span> Magician</button>
+    <button class="mood-opt" data-mood="euphoric"><span>🌈</span> Euphoric</button>
+    <div class="mood-sound">
+      <span>Ambient Sound</span>
+      <div class="sound-switch" id="soundSwitch"><div class="sound-knob"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MOBILE NAV ============ -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services">Services</a>
+  <a href="#showcase">Work</a>
+  <a href="#process">Process</a>
+  <a href="#research">Research</a>
+  <a href="#sqa">QA</a>
+  <a href="#about">Team</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav id="navbar">
+  <a href="#hero" class="logo magnetic" data-text="MBD">MBD</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#showcase">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#sqa">SQA</a></li>
+    <li><a href="#about">Team</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <button class="nav-cta magnetic" data-scroll="#contact">Let's Talk</button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- floating 3D shapes -->
+  <div class="float-shape shape-cube" data-depth="0.3">
+    <div class="cube">
+      <span class="face f1"></span><span class="face f2"></span><span class="face f3"></span>
+      <span class="face f4"></span><span class="face f5"></span><span class="face f6"></span>
+    </div>
+  </div>
+  <div class="float-shape shape-ring" data-depth="0.5"></div>
+  <div class="float-shape shape-tri" data-depth="0.7"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag">Full-Spectrum Digital Agency</div>
+    <h1 class="hero-headline">
+      <span class="line"><span class="word">We Build.</span></span>
+      <span class="line"><span class="word">We <span class="accent-word">Design.</span></span></span>
+      <span class="line"><span class="word">We Innovate.</span></span>
+    </h1>
+    <div class="hero-typewriter">
+      <span class="tw-prefix">We deliver</span>
+      <span class="tw-text" id="typewriter"></span><span class="tw-caret">|</span>
+    </div>
+    <p class="hero-sub">MBD is a multi-disciplinary technology company delivering design, software engineering, AI systems, SQA, and academic research — all under one roof.</p>
+    <div class="hero-btns">
+      <button class="btn-primary magnetic" data-scroll="#services">Explore Services <span class="arr">↗</span></button>
+      <button class="btn-ghost magnetic" data-scroll="#showcase">View Our Work</button>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" data-count="250" data-suffix="+">0</div><div class="label">Projects Done</div></div>
+    <div class="hero-stat"><div class="num" data-count="98" data-suffix="%">0</div><div class="label">Client Satisfaction</div></div>
+    <div class="hero-stat"><div class="num" data-count="40" data-suffix="+">0</div><div class="label">Team Experts</div></div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>UI/UX Design</span>
+    <span class="marquee-item"><span class="dot"></span>Logo &amp; Branding</span>
+    <span class="marquee-item"><span class="dot"></span>Web Development</span>
+    <span class="marquee-item"><span class="dot"></span>Mobile Apps</span>
+    <span class="marquee-item"><span class="dot"></span>AI &amp; ML Models</span>
+    <span class="marquee-item"><span class="dot"></span>SQA Testing</span>
+    <span class="marquee-item"><span class="dot"></span>Academic Research</span>
+    <span class="marquee-item"><span class="dot"></span>Mockup &amp; Prototypes</span>
+    <span class="marquee-item"><span class="dot"></span>Software Engineering</span>
+    <span class="marquee-item"><span class="dot"></span>Publication Assistance</span>
+    <span class="marquee-item"><span class="dot"></span>UI/UX Design</span>
+    <span class="marquee-item"><span class="dot"></span>Logo &amp; Branding</span>
+    <span class="marquee-item"><span class="dot"></span>Web Development</span>
+    <span class="marquee-item"><span class="dot"></span>Mobile Apps</span>
+    <span class="marquee-item"><span class="dot"></span>AI &amp; ML Models</span>
+    <span class="marquee-item"><span class="dot"></span>SQA Testing</span>
+    <span class="marquee-item"><span class="dot"></span>Academic Research</span>
+    <span class="marquee-item"><span class="dot"></span>Mockup &amp; Prototypes</span>
+    <span class="marquee-item"><span class="dot"></span>Software Engineering</span>
+    <span class="marquee-item"><span class="dot"></span>Publication Assistance</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title scramble" data-text="Everything You Need. Under One Roof.">Everything You Need.<br>Under One Roof.</h2>
+    <p class="section-sub">From pixel-perfect design to production-grade AI systems — we're the only partner you need. <em>Click any service to dive deeper.</em></p>
+  </div>
+  <div class="services-grid" id="servicesGrid"><!-- injected by JS --></div>
+</section>
+
+<!-- ============ SERVICE MODAL ============ -->
+<div class="modal-overlay" id="serviceModal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ============ 3D SHOWCASE ============ -->
+<section id="showcase">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Our Work</div>
+    <h2 class="section-title scramble" data-text="Built to Last. Designed to Impress.">Built to Last.<br>Designed to Impress.</h2>
+    <p class="section-sub"><em>Click a card to flip it</em> and reveal the full story behind each build.</p>
+  </div>
+  <div class="cards-3d-grid" id="cards3dGrid"><!-- injected by JS --></div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title scramble" data-text="Our Process. No Surprises.">Our Process.<br>No Surprises.</h2>
+  </div>
+  <div class="process-track">
+    <div class="process-step reveal">
+      <div class="step-dot">🔍</div>
+      <div class="step-num">01</div>
+      <div class="step-title">Discovery</div>
+      <p class="step-desc">We deep-dive into your goals, users, and market to define what success looks like.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-dot">✏️</div>
+      <div class="step-num">02</div>
+      <div class="step-title">Strategy</div>
+      <p class="step-desc">Architecture, design language, tech stack, and timelines — locked in before any code is written.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-dot">🏗️</div>
+      <div class="step-num">03</div>
+      <div class="step-title">Build</div>
+      <p class="step-desc">Agile sprints with weekly demos. You see progress, not promises.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-dot">🧪</div>
+      <div class="step-num">04</div>
+      <div class="step-title">QA &amp; Test</div>
+      <p class="step-desc">Comprehensive testing across all platforms before any single line reaches production.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-4">
+      <div class="step-dot">🚀</div>
+      <div class="step-num">05</div>
+      <div class="step-title">Launch &amp; Grow</div>
+      <p class="step-desc">Deploy, monitor, iterate. We stay with you long after launch day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section id="numbers">
+  <div class="section-header reveal center">
+    <div class="section-eyebrow center-eb">By The Numbers</div>
+    <h2 class="section-title">The Proof Is In<br>The Data</h2>
+  </div>
+  <div class="numbers-grid">
+    <div class="number-card reveal"><span class="count-num" data-target="250" data-suffix="+">0</span><span class="count-label">Projects Delivered</span></div>
+    <div class="number-card reveal reveal-delay-1"><span class="count-num" data-target="80" data-suffix="+">0</span><span class="count-label">Indexed Publications</span></div>
+    <div class="number-card reveal reveal-delay-2"><span class="count-num" data-target="98" data-suffix="%">0</span><span class="count-label">On-Time Delivery</span></div>
+    <div class="number-card reveal reveal-delay-3"><span class="count-num" data-target="40" data-suffix="+">0</span><span class="count-label">Expert Team Members</span></div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section id="research">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Academic Excellence</div>
+    <h2 class="section-title scramble" data-text="Research That Gets Published.">Research That<br>Gets Published.</h2>
+    <p class="section-sub">Our in-house academic team holds PhD-level expertise with publications in IEEE, SCOPUS, ACM, and other top-indexed journals.</p>
+  </div>
+  <div class="research-layout">
+    <div class="research-visual reveal">
+      <div class="journal-stack">
+        <div class="journal-card">
+          <span class="journal-badge">IEEE Access · 2023</span>
+          <div class="journal-title">Deep Learning-Based Sentiment Analysis for Low-Resource Bengali Language Processing</div>
+          <div class="journal-meta">Dr. Rahman et al. · Impact Factor: 3.9</div>
+          <div class="journal-citations">★ 47 citations</div>
+        </div>
+        <div class="journal-card">
+          <span class="journal-badge alt">SCOPUS · 2024</span>
+          <div class="journal-title">Efficient Edge Computing Framework for Real-Time IoT Anomaly Detection Using Federated Learning</div>
+          <div class="journal-meta">Prof. Hossain et al. · Impact Factor: 4.7</div>
+          <div class="journal-citations">★ 29 citations</div>
+        </div>
+        <div class="journal-card">
+          <span class="journal-badge gold">ACM Digital · 2024</span>
+          <div class="journal-title">Comparative Analysis of Transformer Architectures for Clinical Text Classification</div>
+          <div class="journal-meta">Dr. Islam et al. · Impact Factor: 5.1</div>
+          <div class="journal-citations">★ 18 citations</div>
+        </div>
+      </div>
+    </div>
+    <div class="research-features reveal reveal-delay-1">
+      <div class="research-feat"><span class="feat-icon">🎓</span><div><div class="feat-title">PhD-Level Research Team</div><p class="feat-desc">All our researchers hold advanced degrees with active publication records.</p></div></div>
+      <div class="research-feat"><span class="feat-icon">📊</span><div><div class="feat-title">Data Analysis &amp; Statistics</div><p class="feat-desc">SPSS, R, Python-based analysis. Quantitative, qualitative, and mixed methods.</p></div></div>
+      <div class="research-feat"><span class="feat-icon">📝</span><div><div class="feat-title">Thesis &amp; Dissertation Support</div><p class="feat-desc">End-to-end support — proposal to defense — across all disciplines.</p></div></div>
+      <div class="research-feat"><span class="feat-icon">🔎</span><div><div class="feat-title">Literature Review &amp; Plagiarism-Free</div><p class="feat-desc">Systematic reviews, Turnitin-verified original content, proper citations.</p></div></div>
+      <div class="research-feat"><span class="feat-icon">🌐</span><div><div class="feat-title">Journal Submission Support</div><p class="feat-desc">We guide you through peer-review, revisions, and journal selection.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Client Love</div>
+    <h2 class="section-title scramble" data-text="Don't Take Our Word For It.">Don't Take Our<br>Word For It.</h2>
+  </div>
+  <div class="testimonial-track" id="testimonialTrack"><!-- injected by JS --></div>
+  <div class="testimonial-dots" id="testimonialDots"></div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section id="tech">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Technology</div>
+    <h2 class="section-title scramble" data-text="Powered By World-Class Tools.">Powered By<br>World-Class Tools.</h2>
+  </div>
+  <div class="tech-grid" id="techGrid"><!-- injected by JS --></div>
+</section>
+
+<!-- ============ SQA ============ -->
+<section id="sqa">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Quality Assurance</div>
+    <h2 class="section-title scramble" data-text="Zero Bugs. Zero Compromises.">Zero Bugs.<br>Zero Compromises.</h2>
+    <p class="section-sub">Our SQA division ensures your software is tested, verified, and performance-guaranteed across every platform before it touches your users.</p>
+  </div>
+  <div class="sqa-layout">
+    <div class="sqa-metrics reveal">
+      <div class="metric-card"><span class="metric-num">99.2%</span><div class="metric-label">Bug Detection Rate</div></div>
+      <div class="metric-card"><span class="metric-num">3x</span><div class="metric-label">Faster Test Cycles</div></div>
+      <div class="metric-card"><span class="metric-num">100%</span><div class="metric-label">Regression Coverage</div></div>
+      <div class="metric-card"><span class="metric-num">24h</span><div class="metric-label">Avg Report Turnaround</div></div>
+      <div class="sqa-coverage">
+        <div class="sqa-coverage-title">Coverage by Platform</div>
+        <div id="sqa-bars"></div>
+      </div>
+    </div>
+    <div class="sqa-list reveal reveal-delay-1">
+      <div class="sqa-item"><div class="sqa-check">✓</div><div><div class="sqa-item-title">Functional Testing</div><p class="sqa-item-desc">End-to-end feature verification on native, web, and hybrid apps.</p></div></div>
+      <div class="sqa-item"><div class="sqa-check">✓</div><div><div class="sqa-item-title">Performance &amp; Load Testing</div><p class="sqa-item-desc">Simulate thousands of concurrent users with JMeter and k6.</p></div></div>
+      <div class="sqa-item"><div class="sqa-check">✓</div><div><div class="sqa-item-title">Automated Regression Testing</div><p class="sqa-item-desc">CI/CD-integrated suites with Cypress, Selenium, and Appium.</p></div></div>
+      <div class="sqa-item"><div class="sqa-check">✓</div><div><div class="sqa-item-title">Security &amp; Penetration Testing</div><p class="sqa-item-desc">OWASP Top 10 checks, XSS/SQL injection testing, API audits.</p></div></div>
+      <div class="sqa-item"><div class="sqa-check">✓</div><div><div class="sqa-item-title">Accessibility Audits</div><p class="sqa-item-desc">WCAG 2.1 AA compliance ensuring usability for everyone.</p></div></div>
+      <div class="sqa-item"><div class="sqa-check accent">✓</div><div><div class="sqa-item-title">AI Model Validation</div><p class="sqa-item-desc">Bias detection, adversarial testing, and ML benchmarking.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Our Team</div>
+    <h2 class="section-title scramble" data-text="The Minds Behind MBD.">The Minds<br>Behind MBD.</h2>
+    <p class="section-sub">40+ specialists across design, engineering, AI, QA, and academia — all under one roof.</p>
+  </div>
+  <div class="team-grid" id="teamGrid"><!-- injected by JS --></div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Questions</div>
+    <h2 class="section-title scramble" data-text="Frequently Asked.">Frequently<br>Asked.</h2>
+  </div>
+  <div class="faq-list" id="faqList"><!-- injected by JS --></div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing">
+  <div class="section-header reveal center">
+    <div class="section-eyebrow center-eb">Pricing</div>
+    <h2 class="section-title">Transparent Pricing.<br>No Hidden Fees.</h2>
+  </div>
+  <div class="pricing-toggle">
+    <span class="toggle-label">Monthly</span>
+    <div class="toggle-switch" id="billingToggle"><div class="toggle-knob"></div></div>
+    <span class="toggle-label">Annual</span>
+    <span class="toggle-save">Save 20%</span>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-tier">Starter</div>
+      <div class="price-name">Essentials</div>
+      <div class="price-amount"><span class="currency">$</span><span class="amount" id="price1">499</span><span class="period">/mo</span></div>
+      <p class="price-desc">Perfect for startups needing solid design and dev work.</p>
+      <ul class="price-features">
+        <li class="has">Up to 2 active projects</li>
+        <li class="has">UI/UX design (up to 10 screens)</li>
+        <li class="has">Basic web development</li>
+        <li class="has">Manual QA testing</li>
+        <li class="has">Email support (48h response)</li>
+        <li class="no">AI model development</li>
+        <li class="no">Academic research assistance</li>
+        <li class="no">Dedicated project manager</li>
+      </ul>
+      <button class="btn-primary block magnetic" data-scroll="#contact">Get Started</button>
+    </div>
+    <div class="price-card featured reveal reveal-delay-1">
+      <div class="price-tier">Most Popular</div>
+      <div class="price-name">Professional</div>
+      <div class="price-amount"><span class="currency">$</span><span class="amount" id="price2">1,299</span><span class="period">/mo</span></div>
+      <p class="price-desc">For growing companies that need the full stack.</p>
+      <ul class="price-features">
+        <li class="has">Up to 5 active projects</li>
+        <li class="has">Full UI/UX design system</li>
+        <li class="has">Full-stack development</li>
+        <li class="has">Automated testing suite</li>
+        <li class="has">Priority support (12h response)</li>
+        <li class="has">AI model integration</li>
+        <li class="has">Academic research (2 papers/mo)</li>
+        <li class="no">Dedicated project manager</li>
+      </ul>
+      <button class="btn-primary block magnetic" data-scroll="#contact">Get Started</button>
+    </div>
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-name">Enterprise</div>
+      <div class="price-amount"><span class="amount custom" id="price3">Custom</span></div>
+      <p class="price-desc">Unlimited scope, dedicated teams, and SLAs.</p>
+      <ul class="price-features">
+        <li class="has">Unlimited projects</li>
+        <li class="has">Dedicated design team</li>
+        <li class="has">Dedicated dev team</li>
+        <li class="has">Full SQA department access</li>
+        <li class="has">24/7 dedicated support</li>
+        <li class="has">Custom AI systems</li>
+        <li class="has">Unlimited research assistance</li>
+        <li class="has">Dedicated project manager</li>
+      </ul>
+      <button class="btn-ghost block magnetic" data-scroll="#contact">Contact Sales</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="reveal">
+      <h2 class="contact-headline">Let's Build<br><span>Something</span><br>Legendary.</h2>
+      <p class="contact-lead">Tell us about your project. We'll get back to you within 24 hours with a plan, a timeline, and no BS.</p>
+      <div class="contact-info">
+        <div class="contact-item copyable" data-copy="hello@mbdagency.com"><span class="contact-item-icon">📧</span> hello@mbdagency.com <span class="copy-hint">click to copy</span></div>
+        <div class="contact-item"><span class="contact-item-icon">📞</span> +880 1700-000000</div>
+        <div class="contact-item"><span class="contact-item-icon">📍</span> Dhaka, Bangladesh</div>
+        <div class="contact-item"><span class="contact-item-icon">⏰</span> Mon–Fri, 9am–7pm BST</div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="John Doe" required></div>
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="john@company.com" required></div>
+        </div>
+        <div class="form-group"><label class="form-label">Service You Need</label>
+          <select class="form-select">
+            <option value="">Select a service...</option>
+            <option>Brand &amp; Visual Design</option>
+            <option>Software / Web Development</option>
+            <option>AI Model Development</option>
+            <option>SQA &amp; Testing</option>
+            <option>Academic Research &amp; Publication</option>
+            <option>Full-Package Engagement</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Budget Range</label>
+          <select class="form-select">
+            <option>$500 – $2,000</option>
+            <option>$2,000 – $5,000</option>
+            <option>$5,000 – $15,000</option>
+            <option>$15,000 – $50,000</option>
+            <option>$50,000+</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Tell Us About Your Project</label><textarea class="form-textarea" placeholder="Give us a quick overview of what you need..."></textarea></div>
+        <button type="submit" class="form-submit magnetic">Send Message <span class="arr">↗</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">MBD</span>
+      <p>We Build. We Design. We Innovate. Full-spectrum digital solutions from Dhaka to the world.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="X">𝕏</a>
+        <a href="#" class="social-link" aria-label="GitHub">gh</a>
+        <a href="#" class="social-link" aria-label="Website">🔗</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="#services">Brand Design</a></li>
+      <li><a href="#services">Web Development</a></li>
+      <li><a href="#services">AI &amp; ML Models</a></li>
+      <li><a href="#services">Mobile Apps</a></li>
+      <li><a href="#sqa">SQA Testing</a></li>
+      <li><a href="#research">Academic Research</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Company</h4><ul>
+      <li><a href="#about">About MBD</a></li>
+      <li><a href="#about">Our Team</a></li>
+      <li><a href="#showcase">Portfolio</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Press Kit</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Cookie Policy</a></li>
+      <li><a href="#">NDA Template</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MBD Agency. All rights reserved. Dhaka, Bangladesh.</span>
+    <span>Built with obsessive attention to detail.</span>
+  </div>
+</footer>
+
+<!-- ============ FLOATING ACTIONS ============ -->
+<div class="fab magnetic" id="fab" data-scroll="#contact" title="Contact Us">💬</div>
+<div class="back-to-top" id="backToTop" title="Back to top">↑</div>
+
+<!-- ============ NOTIFICATIONS ============ -->
+<div class="notification" id="notification">
+  <div class="notification-title">✓ Message Received</div>
+  <div class="notification-text">We'll be in touch within 24 hours. Thank you!</div>
+</div>
+<div class="live-toast" id="liveToast">
+  <div class="live-dot"></div>
+  <div class="live-text" id="liveText"></div>
+</div>
+
+<!-- ============ KONAMI EASTER EGG ============ -->
+<div class="konami-banner" id="konamiBanner">🎉 PARTY MODE UNLOCKED 🎉</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

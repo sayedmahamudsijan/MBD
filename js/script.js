@@ -238,16 +238,28 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 /* ---------- CURSOR ---------- */
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cursor.style.transform=`translate(${mx-5.5}px,${my-5.5}px)`;
-});
-(function ringLoop(){
-  rx+=(mx-rx)*0.14; ry+=(my-ry)*0.14;
-  ring.style.transform=`translate(${rx-19}px,${ry-19}px)`;
-  requestAnimationFrame(ringLoop);
-})();
+/* Only run the custom cursor on devices with a real (fine) pointer.
+   Phones/tablets keep their native cursor and skip the work entirely. */
+const FINE_POINTER=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(FINE_POINTER&&cursor&&ring){
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,started=false;
+  window.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    if(!started){started=true;rx=mx;ry=my;}
+  },{passive:true});
+  /* Single rAF loop, GPU-composited translate3d, no CSS position transition.
+     Dot tracks 1:1 (instant); ring eases closely behind. */
+  (function cursorLoop(){
+    cursor.style.transform=`translate3d(${mx}px,${my}px,0) translate(-50%,-50%)`;
+    rx+=(mx-rx)*0.28; ry+=(my-ry)*0.28;
+    ring.style.transform=`translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
+    requestAnimationFrame(cursorLoop);
+  })();
+}else{
+  if(cursor)cursor.style.display='none';
+  if(ring)ring.style.display='none';
+  document.body.style.cursor='auto';
+}
 function bindCursor(){
   document.querySelectorAll('a,button,.service-card,.card-3d,.tech-item,.team-card,.sqa-item,.t-dot,.mood-opt,.contact-item.copyable,.faq-q,.toggle-switch,.sound-switch').forEach(el=>{
     if(el.dataset.cb)return; el.dataset.cb='1';
@@ -446,14 +458,27 @@ function bindScramble(){document.querySelectorAll('.scramble').forEach(el=>scram
 })();
 
 /* ---------- NAV ---------- */
-addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',scrollY>80);
-  const h=document.documentElement.scrollHeight-innerHeight;
-  document.getElementById('scroll-progress').style.width=(scrollY/h*100)+'%';
-  document.getElementById('backToTop').classList.toggle('show',scrollY>600);
-  let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(scrollY>=s.offsetTop-200)cur=s.id;});
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
-});
+(function navScroll(){
+  const navbar=document.getElementById('navbar');
+  const prog=document.getElementById('scroll-progress');
+  const btt=document.getElementById('backToTop');
+  const sections=[...document.querySelectorAll('section[id]')];
+  const links=[...document.querySelectorAll('.nav-links a')];
+  let ticking=false;
+  function update(){
+    ticking=false;
+    const y=scrollY;
+    navbar.classList.toggle('scrolled',y>80);
+    const h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=(h>0?y/h*100:0)+'%';
+    btt.classList.toggle('show',y>600);
+    let cur='';for(const s of sections){if(y>=s.offsetTop-200)cur=s.id;}
+    for(const a of links)a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  }
+  /* rAF-throttled + passive: at most one DOM update per frame while scrolling */
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
+  update();
+})();
 document.getElementById('backToTop').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
 /* ---------- MOBILE MENU ---------- */
